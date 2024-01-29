@@ -2,9 +2,11 @@ import React, { useRef } from 'react';
 import { connect } from 'react-redux';
 import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
 import { createSelector } from 'reselect';
+import { Themes } from '../../../components/settings/theme';
+import { FileKey } from '../../../redux/prop-types';
 import {
-  userSelector,
-  isDonationModalOpenSelector
+  isDonationModalOpenSelector,
+  userSelector
 } from '../../../redux/selectors';
 import {
   canFocusEditorSelector,
@@ -12,10 +14,8 @@ import {
   visibleEditorsSelector
 } from '../redux/selectors';
 import { getTargetEditor } from '../utils/get-target-editor';
-import './editor.css';
-import { FileKey } from '../../../redux/prop-types';
-import { Themes } from '../../../components/settings/theme';
 import Editor, { type EditorProps } from './editor';
+import './editor.css';
 
 export type VisibleEditors = {
   indexhtml?: boolean;
@@ -117,6 +117,11 @@ const MultifileEditor = (props: MultifileEditorProps) => {
     >
       <ReflexElement flex={10} {...reflexProps} {...resizeProps}>
         <ReflexContainer orientation='vertical'>
+          <ReflexElement {...reflexProps} {...resizeProps}>
+            <h1>Check Code</h1>
+            <button onClick={() => {}}>CHECK</button>
+          </ReflexElement>
+          <ReflexSplitter propagate={true} {...resizeProps} />
           {editorAndSplitterKeys.map(key => {
             const isSplitter = key.endsWith('-splitter');
             if (isSplitter) {
