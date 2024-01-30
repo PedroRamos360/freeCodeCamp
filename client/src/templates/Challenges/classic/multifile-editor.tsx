@@ -117,11 +117,6 @@ const MultifileEditor = (props: MultifileEditorProps) => {
     >
       <ReflexElement flex={10} {...reflexProps} {...resizeProps}>
         <ReflexContainer orientation='vertical'>
-          <ReflexElement {...reflexProps} {...resizeProps}>
-            <h1>Check Code</h1>
-            <button onClick={() => {}}>CHECK</button>
-          </ReflexElement>
-          <ReflexSplitter propagate={true} {...resizeProps} />
           {editorAndSplitterKeys.map(key => {
             const isSplitter = key.endsWith('-splitter');
             if (isSplitter) {
@@ -137,6 +132,24 @@ const MultifileEditor = (props: MultifileEditorProps) => {
                   {...resizeProps}
                   key={key}
                 >
+                  {console.log({
+                    props: {
+                      canFocusOnMountRef: canFocusOnMountRef,
+                      challengeFiles: challengeFiles,
+                      containerRef: containerRef,
+                      description: targetEditor === key ? description : '',
+                      editorRef: editorRef,
+                      fileKey: key as FileKey,
+                      initialTests: initialTests,
+                      isMobileLayout: isMobileLayout,
+                      isUsingKeyboardInTablist: isUsingKeyboardInTablist,
+                      resizeProps: resizeProps,
+                      dimensions: props.dimensions ?? { height: 0, width: 0 },
+                      title: title,
+                      usesMultifileEditor: usesMultifileEditor,
+                      showProjectPreview: showProjectPreview
+                    }
+                  })}
                   <Editor
                     canFocusOnMountRef={canFocusOnMountRef}
                     challengeFiles={challengeFiles}
